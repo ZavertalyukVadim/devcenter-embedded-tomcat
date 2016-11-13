@@ -1,10 +1,5 @@
 package launch;
 
-import java.io.File;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.WebResourceSet;
 import org.apache.catalina.core.StandardContext;
@@ -14,6 +9,12 @@ import org.apache.catalina.webresources.EmptyResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
 import org.apache.tomcat.util.scan.Constants;
 import org.apache.tomcat.util.scan.StandardJarScanFilter;
+
+import java.io.File;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+
+import static java.nio.file.Files.createTempDirectory;
 
 public class Main {
 
@@ -39,7 +40,7 @@ public class Main {
         File root = getRootFolder();
         System.setProperty("org.apache.catalina.startup.EXIT_ON_INIT_FAILURE", "true");
         Tomcat tomcat = new Tomcat();
-        Path tempPath = Files.createTempDirectory("tomcat-base-dir");
+        Path tempPath = createTempDirectory("tomcat-base-dir");
         tomcat.setBaseDir(tempPath.toString());
         
         //The port that we should run on can be set into an environment variable
@@ -52,7 +53,7 @@ public class Main {
         tomcat.setPort(Integer.valueOf(webPort));
         File webContentFolder = new File(root.getAbsolutePath(), "src/main/webapp/");
         if (!webContentFolder.exists()) {
-            webContentFolder = Files.createTempDirectory("default-doc-base").toFile();
+            webContentFolder = createTempDirectory("default-doc-base").toFile();
         }
         StandardContext ctx = (StandardContext) tomcat.addWebapp("", webContentFolder.getAbsolutePath());
         //Set execution independent of current thread context classloader (compatibility with exec:java mojo)

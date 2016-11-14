@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -28,10 +29,11 @@ public class CalendarServlet extends HttpServlet{
         List<DayOfWeek> dayOfWeeks = new ArrayList<>();
         PrintWriter out = resp.getWriter();
         Print print;
+        System.out.println("dayOfWeek="+ Arrays.toString(req.getParameterValues("weekends")));
         if(req.getParameter("month").length()>0) {
         try{
                         print= new PrintInWeb();
-                        String weekend = req.getParameter("weekends");
+                        String weekend = Arrays.toString(req.getParameterValues("weekends"));
                         List<DayOfWeek> weekList = add(weekend, dayOfWeeks);
                         print.setToday(LocalDate.of(Integer.parseInt(req.getParameter("year")), Integer.parseInt(req.getParameter("month")), Integer.parseInt(req.getParameter("day"))));
                         print.setDayOfWeek(DayOfWeek.of(Integer.parseInt(req.getParameter("dayOfWeek"))));
@@ -63,7 +65,9 @@ public class CalendarServlet extends HttpServlet{
     }
 
     private static List<DayOfWeek> add(String s, List<DayOfWeek> dayOfWeeks) {
-        String[] numbersArray = s.split("[ ,]");
+        String str = s.substring(s.indexOf("[")+1,s.lastIndexOf("]"));
+        System.out.println(str);
+        String[] numbersArray = str.split("[ ,]");
         for (String number : numbersArray) {
             if (!number.trim().isEmpty()) {
                 DayOfWeek weekends = DayOfWeek.of(Integer.parseInt(number.trim()));

@@ -1,6 +1,6 @@
 <html>
 <body>
-<h2>
+
     <form method="get" action="http://localhost:8080/hello_world">
         <p><b>input you word</b></p>
         <label>
@@ -33,7 +33,7 @@
         <option value="12">December</option>
       </select>
 
-      <input placeholder="year=1111"; type="text"name="year" >
+      <input placeholder="year=1111" required="" type="text"name="year" >
 
       <select name="dayOfWeek">
               <option value="1">Monday</option>
@@ -44,10 +44,19 @@
               <option value="6">Saturday</option>
               <option value="7">Sunday</option>
       </select>
-      <input placeholder="weekends=6,7"; type="text"name="weekends">
+      <h2>Change weekends</h2>
+        <br>
+        <input type="checkbox" name="weekends" value="1">Monday</input>
+        <input type="checkbox" name="weekends" value="2">Tuesday</input>
+        <input type="checkbox" name="weekends" value="3">Wednesday</input>
+        <input type="checkbox" name="weekends" value="4">Thursday</input>
+        <input type="checkbox" name="weekends" value="5">Friday</input>
+        <input type="checkbox" name="weekends" value="6">Saturday</input>
+        <input type="checkbox" name="weekends" value="7">Sunday</input>
+        </br>
       <p><input type="submit"value="Let's go!"></p>
      </form>
 
-</h2>
+
 </body>
 </html>

@@ -8,8 +8,15 @@
         </label>
         <p><input type="submit" value="Let's go!"></p>
     </form>
+
+    <p><b><h2>View calendar for current day</h2></b></p>
     <form method="get" action="http://localhost:8080/calendar">
-      <p><b><h2>Change information for calendar</h2></b></p>
+            <p><input type="submit" value="Let's go!"></p>
+     </form>
+
+
+    <form method="get" action="http://localhost:8080/calendar">
+      <p><b><h2>Change information for custom calendar</h2></b></p>
 
       <h5>Select day/month/year</h5>
       <select name="day">
@@ -21,7 +28,7 @@
 
       <select name="month">
         <option value="1">January</option>
-        <option value="2">Februa///ry</option>
+        <option value="2">February</option>
         <option value="3">March</option>
         <option value="4">April</option>
         <option value="5">May</option>
@@ -31,7 +38,7 @@
         <option value="9">September</option>
         <option value="10">October</option>
         <option value="11">November</option>
-        <option value="12">Vadim</option>
+        <option value="12">December</option>
       </select>
 
 
@@ -51,7 +58,7 @@
               <option value="4">Thursday</option>
               <option value="5">Friday</option>
               <option value="6">Saturday</option>
-              <option value="7">Vadim</option>
+              <option value="7">Sunday</option>
       </select>
       </br>
       <h3>Change weekends</h3>

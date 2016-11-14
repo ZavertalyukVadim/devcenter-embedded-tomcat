@@ -42,9 +42,7 @@ public class Main {
         Tomcat tomcat = new Tomcat();
         Path tempPath = createTempDirectory("tomcat-base-dir");
         tomcat.setBaseDir(tempPath.toString());
-        
-        //The port that we should run on can be set into an environment variable
-        //Look for that variable and default to 8080 if it isn't there.
+
         String webPort = System.getenv("PORT");
         if (webPort == null || webPort.isEmpty()) {
             webPort = "8080";
@@ -56,10 +54,8 @@ public class Main {
             webContentFolder = createTempDirectory("default-doc-base").toFile();
         }
         StandardContext ctx = (StandardContext) tomcat.addWebapp("", webContentFolder.getAbsolutePath());
-        //Set execution independent of current thread context classloader (compatibility with exec:java mojo)
         ctx.setParentClassLoader(Main.class.getClassLoader());
 
-        //Disable TLD scanning by default
         if (System.getProperty(Constants.SKIP_JARS_PROPERTY) == null && System.getProperty(Constants.SKIP_JARS_PROPERTY) == null) {
             System.out.println("disabling TLD scanning");
             StandardJarScanFilter jarScanFilter = (StandardJarScanFilter) ctx.getJarScanner().getJarScanFilter();
@@ -68,8 +64,6 @@ public class Main {
 
         System.out.println("configuring app with basedir: " + webContentFolder.getAbsolutePath());
 
-        // Declare an alternative location for your "WEB-INF/classes" dir
-        // Servlet 3.0 annotation will work
         File additionWebInfClassesFolder = new File(root.getAbsolutePath(), "target/classes");
         WebResourceRoot resources = new StandardRoot(ctx);
 

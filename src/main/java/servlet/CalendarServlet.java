@@ -29,8 +29,7 @@ public class CalendarServlet extends HttpServlet{
         List<DayOfWeek> dayOfWeeks = new ArrayList<>();
         PrintWriter out = resp.getWriter();
         Print print;
-        System.out.println("dayOfWeek="+ Arrays.toString(req.getParameterValues("weekends")));
-        if(req.getParameter("month").length()>0) {
+        if(req.getParameterMap().size()!=0) {
         try{
                         print= new PrintInWeb();
                         String weekend = Arrays.toString(req.getParameterValues("weekends"));
@@ -42,8 +41,7 @@ public class CalendarServlet extends HttpServlet{
                         out.append(form);
                         out.flush();
                         out.close();
-
-            }
+        }
             catch (Exception e){
                 e.printStackTrace();
                 print =  new PrintInWeb();

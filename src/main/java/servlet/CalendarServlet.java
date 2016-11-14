@@ -1,7 +1,7 @@
 package servlet;
 
-import calendar.print.Print;
-import calendar.print.PrintInWeb;
+import print.Print;
+import print.PrintInWeb;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,7 +27,7 @@ public class CalendarServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<DayOfWeek> dayOfWeeks = new ArrayList<>();
         PrintWriter out = resp.getWriter();
-        Print print =  new PrintInWeb();
+        Print print = new PrintInWeb();
         if(req.getParameter("day").length()>0) {
             String weekend = req.getParameter("weekends");
             List<DayOfWeek> weekList = add(weekend, dayOfWeeks);

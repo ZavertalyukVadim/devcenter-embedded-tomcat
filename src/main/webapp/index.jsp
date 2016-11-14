@@ -4,7 +4,7 @@
     <form method="get" action="http://localhost:8080/hello_world">
         <p><b>change</b></p>
         <label>
-            <input type="text" name="name">
+            <input placeholder="name"; type="text" name="name">
         </label>
         <p><input type="submit" value="Let's go!"></p>
     </form>

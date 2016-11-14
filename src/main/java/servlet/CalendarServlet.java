@@ -28,24 +28,38 @@ public class CalendarServlet extends HttpServlet{
         List<DayOfWeek> dayOfWeeks = new ArrayList<>();
         PrintWriter out = resp.getWriter();
         Print print;
+        if(req.getParameter("month").length()>0) {
         try{
-            if(req.getParameter("day").length()>0) {
-                    print= new PrintInWeb();
-                    String weekend = req.getParameter("weekends");
-                    List<DayOfWeek> weekList = add(weekend, dayOfWeeks);
-                    print.setToday(LocalDate.of(Integer.parseInt(req.getParameter("year")), Integer.parseInt(req.getParameter("month")), Integer.parseInt(req.getParameter("day"))));
-                    print.setDayOfWeek(DayOfWeek.of(Integer.parseInt(req.getParameter("dayOfWeek"))));
-                    print.setWeekends(weekList);
-                    out.append(print.print());
+                        print= new PrintInWeb();
+                        String weekend = req.getParameter("weekends");
+                        List<DayOfWeek> weekList = add(weekend, dayOfWeeks);
+                        print.setToday(LocalDate.of(Integer.parseInt(req.getParameter("year")), Integer.parseInt(req.getParameter("month")), Integer.parseInt(req.getParameter("day"))));
+                        print.setDayOfWeek(DayOfWeek.of(Integer.parseInt(req.getParameter("dayOfWeek"))));
+                        print.setWeekends(weekList);
+                        out.append(print.print());
+                        out.append(form);
+                        out.flush();
+                        out.close();
+
+            }
+            catch (Exception e){
+                e.printStackTrace();
+                print =  new PrintInWeb();
+                out.append(print.print());
+                out.append(form);
+                out.flush();
+                out.close();
             }
         }
-        catch (Exception e){
-            print =  new PrintInWeb();
+        else {
+            print= new PrintInWeb();
             out.append(print.print());
+            out.append(form);
+            out.flush();
+            out.close();
+
         }
-        out.append(form);
-        out.flush();
-        out.close();
+
     }
 
     private static List<DayOfWeek> add(String s, List<DayOfWeek> dayOfWeeks) {

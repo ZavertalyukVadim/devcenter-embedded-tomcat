@@ -27,15 +27,22 @@ public class CalendarServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<DayOfWeek> dayOfWeeks = new ArrayList<>();
         PrintWriter out = resp.getWriter();
-        Print print = new PrintInWeb();
-        if(req.getParameter("day").length()>0) {
-            String weekend = req.getParameter("weekends");
-            List<DayOfWeek> weekList = add(weekend, dayOfWeeks);
-            print.setToday(LocalDate.of(Integer.parseInt(req.getParameter("year")), Integer.parseInt(req.getParameter("month")), Integer.parseInt(req.getParameter("day"))));
-            print.setDayOfWeek(DayOfWeek.of(Integer.parseInt(req.getParameter("dayOfWeek"))));
-            print.setWeekends(weekList);
+        Print print;
+        try{
+            if(req.getParameter("day").length()>0) {
+                    print= new PrintInWeb();
+                    String weekend = req.getParameter("weekends");
+                    List<DayOfWeek> weekList = add(weekend, dayOfWeeks);
+                    print.setToday(LocalDate.of(Integer.parseInt(req.getParameter("year")), Integer.parseInt(req.getParameter("month")), Integer.parseInt(req.getParameter("day"))));
+                    print.setDayOfWeek(DayOfWeek.of(Integer.parseInt(req.getParameter("dayOfWeek"))));
+                    print.setWeekends(weekList);
+                    out.append(print.print());
+            }
         }
-        out.append(print.print());
+        catch (Exception e){
+            print =  new PrintInWeb();
+            out.append(print.print());
+        }
         out.append(form);
         out.flush();
         out.close();

@@ -2,15 +2,16 @@
 <body>
 
     <form method="get" action="http://localhost:8080/hello_world">
-        <p><b>input you word</b></p>
+        <p><b><h2>Input you word/words</h2></b></p>
         <label>
             <input placeholder="name"; type="text" name="name">
         </label>
         <p><input type="submit" value="Let's go!"></p>
     </form>
     <form method="get" action="http://localhost:8080/calendar">
-      <p><b>change information for calendar</b></p>
+      <p><b><h2>Change information for calendar</h2></b></p>
 
+      <h5>day</h5>
       <select name="day">
                <% for(int i = 1; i <=31; i+=1) { %>
                       <option value%=i%><%=i%></option>
@@ -33,7 +34,13 @@
         <option value="12">December</option>
       </select>
 
-      <input placeholder="year=1111" required="" type="text"name="year" >
+
+        <select name="year">
+                       <% for(int i = 0001; i <=4032; i+=1) { %>
+                              <option value%=i%><%=i%></option>
+                          <% } %>
+
+              </select>
 
       <select name="dayOfWeek">
               <option value="1">Monday</option>
@@ -44,7 +51,7 @@
               <option value="6">Saturday</option>
               <option value="7">Sunday</option>
       </select>
-      <h2>Change weekends</h2>
+      <h3>Change weekends</h3>
         <br>
         <input type="checkbox" checked="true" name="weekends" value="1">Monday</input>
         <input type="checkbox" name="weekends" value="2">Tuesday</input>

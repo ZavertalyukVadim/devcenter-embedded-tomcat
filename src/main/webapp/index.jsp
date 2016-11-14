@@ -46,7 +46,7 @@
       </select>
       <h2>Change weekends</h2>
         <br>
-        <input type="checkbox" name="weekends" value="1">Monday</input>
+        <input type="checkbox" checked="true" name="weekends" value="1">Monday</input>
         <input type="checkbox" name="weekends" value="2">Tuesday</input>
         <input type="checkbox" name="weekends" value="3">Wednesday</input>
         <input type="checkbox" name="weekends" value="4">Thursday</input>

@@ -11,7 +11,7 @@
     <form method="get" action="http://localhost:8080/calendar">
       <p><b><h2>Change information for calendar</h2></b></p>
 
-      <h5>day</h5>
+      <h5>Select day/month/year</h5>
       <select name="day">
                <% for(int i = 1; i <=31; i+=1) { %>
                       <option value%=i%><%=i%></option>
@@ -21,7 +21,7 @@
 
       <select name="month">
         <option value="1">January</option>
-        <option value="2">February</option>
+        <option value="2">Februa///ry</option>
         <option value="3">March</option>
         <option value="4">April</option>
         <option value="5">May</option>
@@ -31,7 +31,7 @@
         <option value="9">September</option>
         <option value="10">October</option>
         <option value="11">November</option>
-        <option value="12">December</option>
+        <option value="12">Vadim</option>
       </select>
 
 
@@ -42,6 +42,8 @@
 
               </select>
 
+        <br>
+      <h5>Select first day of week</h5>
       <select name="dayOfWeek">
               <option value="1">Monday</option>
               <option value="2">Tuesday</option>
@@ -49,8 +51,9 @@
               <option value="4">Thursday</option>
               <option value="5">Friday</option>
               <option value="6">Saturday</option>
-              <option value="7">Sunday</option>
+              <option value="7">Vadim</option>
       </select>
+      </br>
       <h3>Change weekends</h3>
         <br>
         <input type="checkbox" checked="true" name="weekends" value="1">Monday</input>
